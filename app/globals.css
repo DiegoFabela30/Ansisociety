@@ -1,0 +1,343 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #d8e7e5;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CONTENEDOR GENERAL */
+.pageWrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: #d8e7e5;
+  display: flex;
+  flex-direction: column;
+}
+
+/* BARRA SUPERIOR */
+.topBar {
+  background: #97e5d7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+}
+
+.brandBox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logoCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #79d7c7, #4ea6ff);
+  border: 2px solid #4c6fff;
+}
+
+.brandTitle {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #17d6ff;
+  -webkit-text-stroke: 1px #14314d;
+  line-height: 1;
+}
+
+.brandSubtitle {
+  font-size: 0.95rem;
+}
+
+/* BOTONES SUPERIORES */
+.topButton {
+  background: #12f0b4;
+  border: 1px solid #0a2325;
+  border-radius: 20px;
+  padding: 10px 26px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.topButton:hover {
+  background: #0fd3a0;
+}
+
+/* SECCIÓN CENTRAL */
+.centerSection {
+  flex: 1;
+  padding: 40px 20px;
+}
+
+/* TITULOS */
+.bigTitle {
+  font-family: "Times New Roman", serif;
+  text-align: center;
+  font-size: 4rem;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+}
+
+.mediumTitle {
+  font-family: "Times New Roman", serif;
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 4px;
+  margin-bottom: 28px;
+}
+
+.labelTitle {
+  font-family: "Times New Roman", serif;
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* INPUTS */
+.softInput {
+  width: 100%;
+  max-width: 430px;
+  height: 36px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #80cfe0;
+  padding: 8px 12px;
+  margin: 0 auto 30px auto;
+  display: block;
+}
+
+.smallInput {
+  width: 100%;
+  height: 36px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #80cfe0;
+  padding: 8px 12px;
+  margin-top: 6px;
+}
+
+/* BOTON PRINCIPAL */
+.primaryButton {
+  background: #83d1e3;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 28px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background: #6fc0d5;
+}
+
+/* TEXTOS AUTH */
+.authText {
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* ICONOS LOGIN */
+.authIcons {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.iconMock {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.microsoftMock {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+
+.microsoftMock div {
+  background: #f06;
+}
+
+/* FORMULARIOS */
+.formTwoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 60px;
+  max-width: 620px;
+  margin: 0 auto 24px auto;
+}
+
+.fullInputWrap {
+  max-width: 460px;
+  margin: 0 auto 24px auto;
+}
+
+/* TARJETAS HOME */
+.cardsGrid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto 40px auto;
+}
+
+.cardBox {
+  background: #80cfe0;
+  border-radius: 12px;
+  padding: 22px;
+  min-height: 160px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cardBox:hover {
+  transform: scale(1.03);
+  background: #6ec0d3;
+}
+
+/* PANEL DOS COLUMNAS */
+.twoCols {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 540px;
+}
+
+.sidebarPanel {
+  background: #ccdddd;
+  padding: 18px;
+  border-right: 2px solid #d0d0d0;
+}
+
+.sidebarTitle {
+  font-family: "Times New Roman", serif;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.sideButton {
+  width: 100%;
+  margin-bottom: 22px;
+  background: #80cfe0;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: "Times New Roman", serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.mainPanel {
+  background: #ececec;
+  padding: 20px 26px;
+  position: relative;
+}
+
+.noteArea {
+  width: 100%;
+  min-height: 360px;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: none;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+
+/* FORO */
+.forumPost {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 18px;
+}
+
+.forumAuthor {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.forumTextarea {
+  width: 100%;
+  min-height: 100px;
+  border: none;
+  outline: none;
+  resize: none;
+  border-radius: 12px;
+  background: #80cfe0;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+/* RECURSOS */
+.cardsGrid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px 40px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.resourceCard {
+  background: #80cfe0;
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 180px;
+}
+
+.resourceCard h3 {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.audioItem {
+  background: #efefef;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.videoMock {
+  width: 100%;
+  height: 140px;
+  background: #1f1f1f;
+  margin-top: 10px;
+}
+
+/* FOOTER */
+.contactBar {
+  background: #97e5d7;
+  text-align: center;
+  padding: 18px;
+  font-family: "Times New Roman", serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
