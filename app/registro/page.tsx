@@ -20,6 +20,8 @@ export default function RegistroPage() {
   const [cargando, setCargando] = useState(false);
 
   const manejarRegistro = async () => {
+    console.log("BOTON PRESIONADO");
+
     setError("");
 
     if (
@@ -34,11 +36,6 @@ export default function RegistroPage() {
       return;
     }
 
-    if (contrasena.length < 6) {
-      setError("La contraseña debe tener al menos 6 caracteres.");
-      return;
-    }
-
     try {
       setCargando(true);
 
@@ -47,6 +44,8 @@ export default function RegistroPage() {
         correo,
         contrasena
       );
+
+      console.log("Usuario creado:", usuarioCreado.user);
 
       const uid = usuarioCreado.user.uid;
 
@@ -61,8 +60,12 @@ export default function RegistroPage() {
         createdAt: new Date().toISOString(),
       });
 
-      router.push("/");
+      alert("Cuenta creada correctamente");
+
+      router.push("/login");
     } catch (err: unknown) {
+      console.error("ERROR FIREBASE:", err);
+
       const errorCode =
         err && typeof err === "object" && "code" in err
           ? String(err.code)
@@ -122,14 +125,21 @@ export default function RegistroPage() {
             />
           </div>
 
+          {/* SELECT GENERO */}
           <div>
             <p className="labelTitle">GÉNERO</p>
-            <input
+            <select
               className="smallInput"
-              type="text"
               value={genero}
               onChange={(e) => setGenero(e.target.value)}
-            />
+            >
+              <option value="">Selecciona una opción</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Femenino">Femenino</option>
+              <option value="Prefiero no decirlo">
+                Prefiero no decirlo
+              </option>
+            </select>
           </div>
 
           <div>
@@ -163,9 +173,6 @@ export default function RegistroPage() {
           />
         </div>
 
-        <p className="authText">¿OLVIDASTE TU CONTRASEÑA?</p>
-        <p className="authText">CLICK AQUÍ</p>
-
         {error && <p className="errorText">{error}</p>}
 
         <div style={{ textAlign: "center", marginTop: 16 }}>
@@ -176,29 +183,6 @@ export default function RegistroPage() {
           >
             {cargando ? "CREANDO..." : "CREAR CUENTA"}
           </button>
-        </div>
-
-        <h3
-          style={{
-            textAlign: "center",
-            marginTop: 24,
-            marginBottom: 12,
-            fontFamily: "Times New Roman, serif",
-            fontSize: "2rem",
-            letterSpacing: "3px",
-          }}
-        >
-          REGÍSTRATE CON:
-        </h3>
-
-        <div className="authIcons">
-          <div className="iconMock">G</div>
-          <div className="microsoftMock">
-            <div style={{ background: "#f35325" }} />
-            <div style={{ background: "#81bc06" }} />
-            <div style={{ background: "#05a6f0" }} />
-            <div style={{ background: "#ffba08" }} />
-          </div>
         </div>
       </section>
 

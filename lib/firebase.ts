@@ -3,15 +3,17 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
-  projectId: "TU_PROJECT_ID",
-  storageBucket: "TU_STORAGE_BUCKET",
-  messagingSenderId: "TU_MESSAGING_SENDER_ID",
-  appId: "TU_APP_ID",
+  apiKey: "AIzaSyAvphtbiHAd_md5KH9sfxHy-aWI1KADB9s",
+  authDomain: "ansisociety.firebaseapp.com",
+  projectId: "ansisociety",
+  storageBucket: "ansisociety.firebasestorage.app",
+  messagingSenderId: "529741192547",
+  appId: "1:529741192547:web:e377ee67549ab586590756",
+  measurementId: "G-WSLSNLKEMW",
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
+// 🔥 ESTO ES LO IMPORTANTE
 export const auth = getAuth(app);
 export const db = getFirestore(app);
