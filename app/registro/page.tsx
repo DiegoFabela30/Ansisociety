@@ -19,9 +19,8 @@ export default function RegistroPage() {
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
 
-  const manejarRegistro = async () => {
-    console.log("BOTON PRESIONADO");
-
+  const manejarRegistro = async (e: React.FormEvent) => {
+    e.preventDefault();
     setError("");
 
     if (
@@ -45,8 +44,6 @@ export default function RegistroPage() {
         contrasena
       );
 
-      console.log("Usuario creado:", usuarioCreado.user);
-
       const uid = usuarioCreado.user.uid;
 
       await setDoc(doc(db, "usuarios", uid), {
@@ -61,7 +58,6 @@ export default function RegistroPage() {
       });
 
       alert("Cuenta creada correctamente");
-
       router.push("/login");
     } catch (err: unknown) {
       console.error("ERROR FIREBASE:", err);
@@ -72,11 +68,11 @@ export default function RegistroPage() {
           : "";
 
       if (errorCode === "auth/email-already-in-use") {
-        setError("Ese correo ya está registrado.");
+        setError("Ese correo ya esta registrado.");
       } else if (errorCode === "auth/invalid-email") {
-        setError("El correo no es válido.");
+        setError("El correo no es valido.");
       } else if (errorCode === "auth/weak-password") {
-        setError("La contraseña es demasiado débil.");
+        setError("La contrasena es demasiado debil.");
       } else {
         setError("No se pudo crear la cuenta.");
       }
@@ -88,101 +84,118 @@ export default function RegistroPage() {
   return (
     <main className="pageWrapper">
       <header className="topBar">
-        <div className="brandBox">
+        <Link href="/" className="brandBox no-underline">
           <div className="logoCircle" />
           <div>
             <h1 className="brandTitle">ANSISOCIETY</h1>
             <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
           </div>
-        </div>
+        </Link>
 
-        <Link href="/login" className="topButtonLink">
-          <button className="topButton">Iniciar Sesión</button>
+        <Link href="/login">
+          <button className="topButton">Iniciar Sesion</button>
         </Link>
       </header>
 
-      <section className="centerSection">
-        <h2 className="mediumTitle">REGÍSTRATE</h2>
+      <section className="centerSection flex items-center justify-center py-8">
+        <div className="w-full max-w-2xl animate-fade-in-up">
+          <div className="bg-white/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+            <h2 className="font-serif text-center text-3xl tracking-wide mb-2 text-[var(--color-text-primary)]">
+              Crea tu cuenta
+            </h2>
+            <p className="text-center text-[var(--color-text-muted)] mb-8">
+              Unete a nuestra comunidad de apoyo emocional
+            </p>
 
-        <div className="formTwoCols">
-          <div>
-            <p className="labelTitle">NOMBRE</p>
-            <input
-              className="smallInput"
-              type="text"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
+            <form onSubmit={manejarRegistro}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                <div>
+                  <label className="labelTitle block text-left mb-2">NOMBRE</label>
+                  <input
+                    className="smallInput !mt-0"
+                    type="text"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Tu nombre"
+                  />
+                </div>
+
+                <div>
+                  <label className="labelTitle block text-left mb-2">APELLIDOS</label>
+                  <input
+                    className="smallInput !mt-0"
+                    type="text"
+                    value={apellidos}
+                    onChange={(e) => setApellidos(e.target.value)}
+                    placeholder="Tus apellidos"
+                  />
+                </div>
+
+                <div>
+                  <label className="labelTitle block text-left mb-2">GENERO</label>
+                  <select
+                    className="smallInput !mt-0"
+                    value={genero}
+                    onChange={(e) => setGenero(e.target.value)}
+                  >
+                    <option value="">Selecciona una opcion</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="labelTitle block text-left mb-2">FECHA DE NACIMIENTO</label>
+                  <input
+                    className="smallInput !mt-0"
+                    type="date"
+                    value={fechaNacimiento}
+                    onChange={(e) => setFechaNacimiento(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div className="mb-5">
+                <label className="labelTitle block text-left mb-2">CORREO ELECTRONICO</label>
+                <input
+                  className="smallInput !mt-0"
+                  type="email"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
+                  placeholder="tu@correo.com"
+                />
+              </div>
+
+              <div className="mb-6">
+                <label className="labelTitle block text-left mb-2">CONTRASENA</label>
+                <input
+                  className="smallInput !mt-0"
+                  type="password"
+                  value={contrasena}
+                  onChange={(e) => setContrasena(e.target.value)}
+                  placeholder="Minimo 6 caracteres"
+                />
+              </div>
+
+              {error && <p className="errorText">{error}</p>}
+
+              <button
+                type="submit"
+                className="primaryButton w-full py-4 text-base"
+                disabled={cargando}
+              >
+                {cargando ? "CREANDO CUENTA..." : "CREAR CUENTA"}
+              </button>
+            </form>
+
+            <p className="text-center mt-6 text-sm text-[var(--color-text-muted)]">
+              Ya tienes cuenta?{" "}
+              <Link href="/login" className="text-[var(--color-accent-hover)] font-semibold hover:underline">
+                Inicia sesion
+              </Link>
+            </p>
           </div>
-
-          <div>
-            <p className="labelTitle">APELLIDOS</p>
-            <input
-              className="smallInput"
-              type="text"
-              value={apellidos}
-              onChange={(e) => setApellidos(e.target.value)}
-            />
-          </div>
-
-          {/* SELECT GENERO */}
-          <div>
-            <p className="labelTitle">GÉNERO</p>
-            <select
-              className="smallInput"
-              value={genero}
-              onChange={(e) => setGenero(e.target.value)}
-            >
-              <option value="">Selecciona una opción</option>
-              <option value="Masculino">Masculino</option>
-              <option value="Femenino">Femenino</option>
-              <option value="Prefiero no decirlo">
-                Prefiero no decirlo
-              </option>
-            </select>
-          </div>
-
-          <div>
-            <p className="labelTitle">FECHA DE NACIMIENTO</p>
-            <input
-              className="smallInput"
-              type="date"
-              value={fechaNacimiento}
-              onChange={(e) => setFechaNacimiento(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="fullInputWrap">
-          <p className="labelTitle">CORREO ELECTRÓNICO</p>
-          <input
-            className="smallInput"
-            type="email"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-          />
-        </div>
-
-        <div className="fullInputWrap">
-          <p className="labelTitle">CONTRASEÑA</p>
-          <input
-            className="smallInput"
-            type="password"
-            value={contrasena}
-            onChange={(e) => setContrasena(e.target.value)}
-          />
-        </div>
-
-        {error && <p className="errorText">{error}</p>}
-
-        <div style={{ textAlign: "center", marginTop: 16 }}>
-          <button
-            className="primaryButton"
-            onClick={manejarRegistro}
-            disabled={cargando}
-          >
-            {cargando ? "CREANDO..." : "CREAR CUENTA"}
-          </button>
         </div>
       </section>
 
