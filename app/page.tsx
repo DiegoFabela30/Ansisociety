@@ -1,8 +1,28 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 export default function HomePage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  // Parallax suave en los orbs del hero
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!heroRef.current) return;
+      const y = window.scrollY;
+      const orbs = heroRef.current.querySelectorAll<HTMLElement>(".orb");
+      orbs.forEach((orb, i) => {
+        orb.style.transform = `translateY(${y * (0.08 + i * 0.04)}px)`;
+      });
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <main className="pageWrapper">
+    <main className="homeWrapper">
+      {/* ── TOPBAR ── */}
       <header className="topBar">
         <div className="brandBox">
           <div className="logoCircle" />
@@ -11,176 +31,150 @@ export default function HomePage() {
             <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
           </div>
         </div>
-
-        <div style={{ display: "flex", gap: "14px" }}>
-          <Link href="/registro">
-            <button className="topButton">Registrate</button>
-          </Link>
-
+        <div className="navButtons">
           <Link href="/login">
-            <button className="topButton">Iniciar Sesion</button>
+            <button className="btnOutline">Iniciar Sesión</button>
+          </Link>
+          <Link href="/registro">
+            <button className="btnSolid">Registrarse</button>
           </Link>
         </div>
       </header>
 
-      <section className="centerSection">
-        <h2
-          style={{
-            textAlign: "center",
-            fontFamily: "Times New Roman, serif",
-            fontSize: "2.9rem",
-            letterSpacing: "2px",
-            marginTop: "10px",
-            marginBottom: "26px",
-          }}
-        >
-          Una sola app para <br /> gestionar la ansiedad
-        </h2>
-
-        <p
-          style={{
-            textAlign: "center",
-            fontFamily: "Times New Roman, serif",
-            fontSize: "1.3rem",
-            marginBottom: "18px",
-            letterSpacing: "1px",
-          }}
-        >
-          Tips y consejos
-        </p>
-
-        <div
-          style={{
-            background: "#80cfe0",
-            maxWidth: "1040px",
-            margin: "0 auto 34px auto",
-            borderRadius: "10px",
-            padding: "16px 24px",
-            textAlign: "center",
-            fontStyle: "italic",
-            fontFamily: "Times New Roman, serif",
-            fontSize: "1.1rem",
-          }}
-        >
-          Escribir cómo te sientes y qué haces en ese momento te ayudará a
-          identificarte mejor. Recuerda usar el bloc de notas de ANSISOCIETY
-          para llevar un mejor seguimiento.
+      {/* ── HERO ── */}
+      <section className="hero" ref={heroRef}>
+        <div className="heroBg">
+          <div className="orb orb1" />
+          <div className="orb orb2" />
+          <div className="orb orb3" />
         </div>
-
-        <h3
-          style={{
-            textAlign: "center",
-            fontFamily: "Times New Roman, serif",
-            fontSize: "1.5rem",
-            letterSpacing: "1px",
-            marginBottom: "26px",
-          }}
-        >
-          Recursos
-        </h3>
-
-        <div className="cardsGrid3">
-          <Link href="/foro" style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="cardBox">
-              <h3
-                style={{
-                  fontFamily: "Times New Roman, serif",
-                  fontSize: "1.2rem",
-                  letterSpacing: "1px",
-                  marginBottom: "14px",
-                }}
-              >
-                FORO
-              </h3>
-              <p style={{ fontSize: "1rem", lineHeight: 1.4 }}>
-                Espacio moderado para compartir y recibir apoyo entre pares.
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/notas" style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="cardBox">
-              <h3
-                style={{
-                  fontFamily: "Times New Roman, serif",
-                  fontSize: "1.2rem",
-                  letterSpacing: "1px",
-                  marginBottom: "14px",
-                }}
-              >
-                BLOC DE NOTAS
-              </h3>
-              <p style={{ fontSize: "1rem", lineHeight: 1.4 }}>
-                Registro de pensamientos y emociones mediante escritura.
-              </p>
-            </div>
-          </Link>
-
-          <Link href="/recursos" style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="cardBox">
-              <h3
-                style={{
-                  fontFamily: "Times New Roman, serif",
-                  fontSize: "1.2rem",
-                  letterSpacing: "1px",
-                  marginBottom: "14px",
-                }}
-              >
-                RECURSOS MULTIMEDIA
-              </h3>
-              <p style={{ fontSize: "1rem", lineHeight: 1.4 }}>
-                Música, ejercicios de respiración y videos para alivio inmediato.
-              </p>
-            </div>
-          </Link>
-        </div>
-
-        <h3
-          style={{
-            textAlign: "center",
-            fontFamily: "Times New Roman, serif",
-            fontSize: "1.5rem",
-            letterSpacing: "1px",
-            marginBottom: "18px",
-          }}
-        >
-          Recursos rápidos
-        </h3>
-
-        <Link
-          href="/recursos"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            display: "block",
-            width: "650px",
-            margin: "0 auto",
-          }}
-        >
-          <div
-            style={{
-              background: "#80cfe0",
-              borderRadius: "10px",
-              padding: "14px 18px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-          >
-            <div>
-              <p style={{ fontWeight: 700, marginBottom: 4 }}>RESPIRACIÓN GUIADA</p>
-              <p>Guía de respiración de 2 minutos para reducir la ansiedad</p>
-            </div>
-
-            <span style={{ fontSize: "2rem" }}>▶</span>
+        <div className="heroContent">
+          <span className="heroBadge">✦ Comunidad de bienestar mental</span>
+          <h2 className="heroTitle">
+            No estás<br />
+            <span className="heroAccent">solo en esto</span>
+          </h2>
+          <p className="heroDesc">
+            Un espacio seguro para compartir, escuchar y crecer.<br />
+            Herramientas digitales para tu bienestar emocional.
+          </p>
+          <div className="heroActions">
+            <Link href="/registro">
+              <button className="btnHeroPrimary">Comenzar ahora</button>
+            </Link>
+            <button className="btnHeroGhost">Conocer más</button>
           </div>
-        </Link>
+        </div>
+        <div className="scrollHint">
+          <span>Explorar</span>
+          <div className="scrollArrow" />
+        </div>
       </section>
 
-      <footer className="contactBar">
-        <div>CONTACTO:</div>
-        <div>soporteansisociety@helper.com</div>
+      {/* ── NUEVA SECCIÓN TEST GAD ── */}
+      <section className="gadPromoSection">
+        <div className="gadPromoCard">
+          <div className="gadPromoText">
+            <span className="gadPromoBadge">✦ Evaluación emocional</span>
+            <h2 className="gadPromoTitle">
+              ¿Quieres saber si tienes ansiedad?
+            </h2>
+            <p className="gadPromoDesc">
+              Realiza el test y averigua si tienes ansiedad.
+            </p>
+          </div>
+
+          <div className="gadPromoAction">
+            <Link href="/test_gad">
+              <button className="gadPromoButton">Realizar test GAD-7</button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS BAND ── */}
+      <div className="statsBand">
+        <div className="statsInner">
+          {[
+            { num: "2,400+", label: "Usuarios activos" },
+            { num: "98%", label: "Satisfacción" },
+            { num: "24/7", label: "Soporte disponible" },
+            { num: "350+", label: "Recursos de apoyo" },
+          ].map((s) => (
+            <div key={s.label} className="statItem">
+              <div className="statNumber">{s.num}</div>
+              <div className="statLabel">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── CARDS ── */}
+      <section className="cardsSection">
+        <p className="sectionLabel">¿Qué encontrarás aquí?</p>
+        <h2 className="sectionTitle">
+          Todo lo que necesitas<br />en un solo lugar
+        </h2>
+        <div className="cardsGrid">
+          {[
+            {
+              icon: "🧘",
+              color: "teal",
+              title: "Diario Emocional",
+              desc: "Registra cómo te sientes día a día. Identifica patrones y cuida tu salud mental con reflexiones guiadas.",
+              href: "/notas",
+            },
+            {
+              icon: "💬",
+              color: "blue",
+              title: "Foro Comunitario",
+              desc: "Comparte tus experiencias con personas que entienden. Un espacio de escucha sin juicios, con apoyo real.",
+              href: "/foro",
+            },
+            {
+              icon: "📚",
+              color: "green",
+              title: "Recursos de Apoyo",
+              desc: "Audios, videos y lecturas seleccionadas por especialistas para acompañarte en tu proceso de bienestar.",
+              href: "/recursos",
+            },
+            {
+              icon: "📝",
+              color: "purple",
+              title: "Test de Ansiedad",
+              desc: "Evalúa cómo te has sentido en las últimas semanas con el test GAD-7 y obtén una orientación inicial.",
+              href: "/test_gad",
+            },
+          ].map((card) => (
+            <Link href={card.href} key={card.title} className="card">
+              <div className={`cardIcon ${card.color}`}>{card.icon}</div>
+              <h3 className="cardTitle">{card.title}</h3>
+              <p className="cardDesc">{card.desc}</p>
+              <span className="cardArrow">Explorar →</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ── TESTIMONIAL ── */}
+      <section className="testimonialSection">
+        <p className="sectionLabel">Testimonios</p>
+        <h2 className="sectionTitle">Lo que dice nuestra comunidad</h2>
+        <div className="testimonialCard">
+          <span className="quoteMark">&ldquo;</span>
+          <p className="testimonialText">
+            Ansisociety me dio las herramientas para entender mis emociones y conectar
+            con personas que realmente me escuchan. Es el espacio que siempre necesité
+            pero no sabía que existía.
+          </p>
+          <div className="testimonialAuthor">— Mariana G., usuaria desde 2024</div>
+        </div>
+      </section>
+
+      {/* ── FOOTER ── */}
+      <footer className="footer">
+        <div className="footerBrand">ANSISOCIETY</div>
+        <div className="footerContact">soporteansisociety@helper.com</div>
       </footer>
     </main>
   );

@@ -20,18 +20,9 @@ export default function RegistroPage() {
   const [cargando, setCargando] = useState(false);
 
   const manejarRegistro = async () => {
-    console.log("BOTON PRESIONADO");
-
     setError("");
 
-    if (
-      !nombre ||
-      !apellidos ||
-      !genero ||
-      !fechaNacimiento ||
-      !correo ||
-      !contrasena
-    ) {
+    if (!nombre || !apellidos || !genero || !fechaNacimiento || !correo || !contrasena) {
       setError("Completa todos los campos.");
       return;
     }
@@ -39,46 +30,29 @@ export default function RegistroPage() {
     try {
       setCargando(true);
 
-      const usuarioCreado = await createUserWithEmailAndPassword(
-        auth,
-        correo,
-        contrasena
-      );
-
-      console.log("Usuario creado:", usuarioCreado.user);
-
+      const usuarioCreado = await createUserWithEmailAndPassword(auth, correo, contrasena);
       const uid = usuarioCreado.user.uid;
 
       await setDoc(doc(db, "usuarios", uid), {
-        uid,
-        nombre,
-        apellidos,
-        genero,
-        fechaNacimiento,
-        correo,
+        uid, nombre, apellidos, genero, fechaNacimiento, correo,
         rol: "usuario",
         createdAt: new Date().toISOString(),
       });
 
       alert("Cuenta creada correctamente");
-
       router.push("/login");
     } catch (err: unknown) {
-      console.error("ERROR FIREBASE:", err);
-
       const errorCode =
-        err && typeof err === "object" && "code" in err
-          ? String(err.code)
-          : "";
+        err && typeof err === "object" && "code" in err ? String(err.code) : "";
 
       if (errorCode === "auth/email-already-in-use") {
         setError("Ese correo ya está registrado.");
       } else if (errorCode === "auth/invalid-email") {
         setError("El correo no es válido.");
       } else if (errorCode === "auth/weak-password") {
-        setError("La contraseña es demasiado débil.");
+        setError("La contraseña debe tener al menos 6 caracteres.");
       } else {
-        setError("No se pudo crear la cuenta.");
+        setError("No se pudo crear la cuenta. Intenta de nuevo.");
       }
     } finally {
       setCargando(false);
@@ -86,8 +60,14 @@ export default function RegistroPage() {
   };
 
   return (
-    <main className="pageWrapper">
-      <header className="topBar">
+    <main className="authPage">
+      {/* Blobs de fondo */}
+      <div className="bgBlob bgBlob1" />
+      <div className="bgBlob bgBlob2" />
+      <div className="bgBlob bgBlob3" />
+
+      {/* ── TOPBAR ── */}
+      <header className="glassBar">
         <div className="brandBox">
           <div className="logoCircle" />
           <div>
@@ -95,99 +75,116 @@ export default function RegistroPage() {
             <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
           </div>
         </div>
-
         <Link href="/login" className="topButtonLink">
-          <button className="topButton">Iniciar Sesión</button>
+          <button className="btnOutline">Iniciar Sesión</button>
         </Link>
       </header>
 
-      <section className="centerSection">
-        <h2 className="mediumTitle">REGÍSTRATE</h2>
+      {/* ── FORMULARIO ── */}
+      <section className="regCenter">
+        <div className="regCard">
+          <span className="regBadge">✦ Únete a la comunidad</span>
+          <h2 className="regTitle">Crea tu cuenta</h2>
+          <p className="regSubtitle">
+            Completa tu información para comenzar tu camino hacia el bienestar emocional.
+          </p>
 
-        <div className="formTwoCols">
-          <div>
-            <p className="labelTitle">NOMBRE</p>
-            <input
-              className="smallInput"
-              type="text"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
+          {/* Grid de campos */}
+          <div className="formGrid">
+            <div className="formField">
+              <label className="fieldLabel">Nombre</label>
+              <input
+                className="regInput"
+                type="text"
+                placeholder="Tu nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </div>
+
+            <div className="formField">
+              <label className="fieldLabel">Apellidos</label>
+              <input
+                className="regInput"
+                type="text"
+                placeholder="Tus apellidos"
+                value={apellidos}
+                onChange={(e) => setApellidos(e.target.value)}
+              />
+            </div>
+
+            <div className="formField">
+              <label className="fieldLabel">Género</label>
+              <div className="selectWrap">
+                <select
+                  className="regSelect"
+                  value={genero}
+                  onChange={(e) => setGenero(e.target.value)}
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="formField">
+              <label className="fieldLabel">Fecha de Nacimiento</label>
+              <input
+                className="regInput"
+                type="date"
+                value={fechaNacimiento}
+                onChange={(e) => setFechaNacimiento(e.target.value)}
+              />
+            </div>
+
+            <div className="formField full">
+              <label className="fieldLabel">Correo Electrónico</label>
+              <input
+                className="regInput"
+                type="email"
+                placeholder="ejemplo@correo.com"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+              />
+            </div>
+
+            <div className="formField full">
+              <label className="fieldLabel">Contraseña</label>
+              <input
+                className="regInput"
+                type="password"
+                placeholder="Mínimo 6 caracteres"
+                value={contrasena}
+                onChange={(e) => setContrasena(e.target.value)}
+              />
+            </div>
           </div>
 
-          <div>
-            <p className="labelTitle">APELLIDOS</p>
-            <input
-              className="smallInput"
-              type="text"
-              value={apellidos}
-              onChange={(e) => setApellidos(e.target.value)}
-            />
-          </div>
+          {error && <div className="errorBox">{error}</div>}
 
-          {/* SELECT GENERO */}
-          <div>
-            <p className="labelTitle">GÉNERO</p>
-            <select
-              className="smallInput"
-              value={genero}
-              onChange={(e) => setGenero(e.target.value)}
+          <div className="regActions">
+            <button
+              className="btnRegister"
+              onClick={manejarRegistro}
+              disabled={cargando}
             >
-              <option value="">Selecciona una opción</option>
-              <option value="Masculino">Masculino</option>
-              <option value="Femenino">Femenino</option>
-              <option value="Prefiero no decirlo">
-                Prefiero no decirlo
-              </option>
-            </select>
+              {cargando ? "CREANDO CUENTA..." : "CREAR CUENTA"}
+            </button>
+            <p className="loginHint">
+              ¿Ya tienes cuenta?{" "}
+              <Link href="/login" className="inlineAuthLink">
+                Inicia sesión aquí
+              </Link>
+            </p>
           </div>
-
-          <div>
-            <p className="labelTitle">FECHA DE NACIMIENTO</p>
-            <input
-              className="smallInput"
-              type="date"
-              value={fechaNacimiento}
-              onChange={(e) => setFechaNacimiento(e.target.value)}
-            />
-          </div>
-        </div>
-
-        <div className="fullInputWrap">
-          <p className="labelTitle">CORREO ELECTRÓNICO</p>
-          <input
-            className="smallInput"
-            type="email"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-          />
-        </div>
-
-        <div className="fullInputWrap">
-          <p className="labelTitle">CONTRASEÑA</p>
-          <input
-            className="smallInput"
-            type="password"
-            value={contrasena}
-            onChange={(e) => setContrasena(e.target.value)}
-          />
-        </div>
-
-        {error && <p className="errorText">{error}</p>}
-
-        <div style={{ textAlign: "center", marginTop: 16 }}>
-          <button
-            className="primaryButton"
-            onClick={manejarRegistro}
-            disabled={cargando}
-          >
-            {cargando ? "CREANDO..." : "CREAR CUENTA"}
-          </button>
         </div>
       </section>
 
-      <footer className="contactBar">
-        <div>CONTACTO:</div>
+      {/* ── FOOTER ── */}
+      <footer className="glassFooter">
+        <div>CONTACTO</div>
         <div>soporteansisociety@helper.com</div>
       </footer>
     </main>
