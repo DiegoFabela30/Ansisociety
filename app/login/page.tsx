@@ -62,6 +62,7 @@ export default function LoginPage() {
               </button>
             </div>
 
+            {/* 
             <div className="dividerLine">
               <span>o continúa con</span>
             </div>
@@ -71,17 +72,8 @@ export default function LoginPage() {
                 <span className="iconMock modernIconMock">G</span>
                 <span>Google</span>
               </button>
-
-              <button className="socialButton microsoftButton">
-                <div className="microsoftMock modernMicrosoftMock">
-                  <div style={{ background: "#f35325" }} />
-                  <div style={{ background: "#81bc06" }} />
-                  <div style={{ background: "#05a6f0" }} />
-                  <div style={{ background: "#ffba08" }} />
-                </div>
-                <span>Microsoft</span>
-              </button>
             </div>
+            */}
 
             <p className="bottomHelperText">
               ¿Aún no tienes cuenta?{" "}

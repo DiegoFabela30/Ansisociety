@@ -40,6 +40,68 @@ export default function HomePage() {
           </Link>
         </div>
       </header>
+      
+
+      <section className="hero" ref={heroRef}>
+  <div className="heroBg">
+    <div className="orb orb1" />
+    <div className="orb orb2" />
+    <div className="orb orb3" />
+  </div>
+
+  <div className="heroContent">
+    <span className="heroBadge">✦ Evaluación emocional</span>
+
+    <h2 className="heroTitle">
+      ¿Tienes ansiedad?<br />
+      <span className="heroAccent">Descúbrelo ahora</span>
+    </h2>
+
+    <p className="heroDesc">
+      Realiza el test GAD-7 para determinar tu nivel de ansiedad.
+    </p>
+
+    <div className="heroActions">
+      <Link href="/test_gad">
+        <button className="btnHeroPrimary">
+          Realizar test GAD-7
+        </button>
+      </Link>
+
+      <button className="btnHeroGhost">
+        Conocer más
+      </button>
+    </div>
+  </div>
+</section>
+
+
+     
+     {/* ── SECCIÓN TEST GAD ── 
+     
+     <section className="gadPromoSection">
+        <div className="gadPromoCard">
+          <div className="gadPromoText">
+            <span className="gadPromoBadge">✦ Evaluación emocional</span>
+            <h2 className="gadPromoTitle">
+              ¿Quieres saber si tienes ansiedad?
+            </h2>
+            <p className="gadPromoDesc">
+              Antes de usar Ancisociety te recomendamos realizar el test para averiguar tu nivel de ansiedad.
+            </p>
+          </div>
+
+          <div className="gadPromoAction">
+            <Link href="/test_gad">
+              <button className="gadPromoButton">Realizar test GAD-7</button>
+            </Link>
+          </div>
+        </div>
+      </section> 
+     */}
+      
+      
+      
 
       {/* ── HERO ── */}
       <section className="hero" ref={heroRef}>
@@ -71,26 +133,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── NUEVA SECCIÓN TEST GAD ── */}
-      <section className="gadPromoSection">
-        <div className="gadPromoCard">
-          <div className="gadPromoText">
-            <span className="gadPromoBadge">✦ Evaluación emocional</span>
-            <h2 className="gadPromoTitle">
-              ¿Quieres saber si tienes ansiedad?
-            </h2>
-            <p className="gadPromoDesc">
-              Realiza el test y averigua si tienes ansiedad.
-            </p>
-          </div>
-
-          <div className="gadPromoAction">
-            <Link href="/test_gad">
-              <button className="gadPromoButton">Realizar test GAD-7</button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ── STATS BAND ── */}
       <div className="statsBand">
@@ -117,6 +160,7 @@ export default function HomePage() {
         </h2>
         <div className="cardsGrid">
           {[
+
             {
               icon: "🧘",
               color: "teal",
@@ -137,13 +181,6 @@ export default function HomePage() {
               title: "Recursos de Apoyo",
               desc: "Audios, videos y lecturas seleccionadas por especialistas para acompañarte en tu proceso de bienestar.",
               href: "/recursos",
-            },
-            {
-              icon: "📝",
-              color: "purple",
-              title: "Test de Ansiedad",
-              desc: "Evalúa cómo te has sentido en las últimas semanas con el test GAD-7 y obtén una orientación inicial.",
-              href: "/test_gad",
             },
           ].map((card) => (
             <Link href={card.href} key={card.title} className="card">
