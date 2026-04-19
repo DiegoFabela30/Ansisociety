@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useRouter } from "next/navigation";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import Header from "@/components/Header";
 
 const questions = [
   "Sentirse nervioso, ansioso o muy alterado",
@@ -28,10 +33,19 @@ const functionalOptions = [
 ];
 
 export default function TestGDAPage() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
   const [answers, setAnswers] = useState<number[]>(Array(7).fill(-1));
   const [difficulty, setDifficulty] = useState<number>(-1);
   const [symptomStart, setSymptomStart] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [guardando, setGuardando] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/login");
+    }
+  }, [user, loading, router]);
 
   const totalScore = useMemo(() => {
     return answers.reduce((acc, val) => (val >= 0 ? acc + val : acc), 0);
@@ -66,15 +80,38 @@ export default function TestGDAPage() {
     setAnswers(updated);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!completed) {
       alert("Por favor responde todas las preguntas del test.");
       return;
     }
-    setSubmitted(true);
-    setTimeout(() => {
-      document.getElementById("resultado")?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+
+    try {
+      setGuardando(true);
+
+      if (user) {
+        await addDoc(collection(db, "usuarios", user.uid, "tests"), {
+          tipo: "GAD-7",
+          puntuacion: totalScore,
+          interpretacion: interpretation,
+          recomendacion: recommendation,
+          respuestas: answers,
+          dificultad: difficulty,
+          fechaInicio: symptomStart,
+          createdAt: serverTimestamp(),
+        });
+      }
+
+      setSubmitted(true);
+      setTimeout(() => {
+        document.getElementById("resultado")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } catch (error) {
+      console.error("Error al guardar el resultado:", error);
+      alert("Hubo un error al guardar el resultado. Intenta de nuevo.");
+    } finally {
+      setGuardando(false);
+    }
   };
 
   // Reiniciar todo el test
@@ -86,6 +123,20 @@ export default function TestGDAPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  if (loading) {
+    return (
+      <main className="gdaPage">
+        <div className="bgBlob bgBlob1" />
+        <div className="bgBlob bgBlob2" />
+        <div className="bgBlob bgBlob3" />
+        <Header variant="default" />
+        <div style={{ textAlign: "center", padding: "40px", color: "#0d5c6e" }}>
+          Cargando...
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="gdaPage">
       <div className="bgBlob bgBlob1" />
@@ -93,18 +144,7 @@ export default function TestGDAPage() {
       <div className="bgBlob bgBlob3" />
 
       {/* Header */}
-      <header className="glassBar">
-        <div className="brandBox">
-          <div className="logoCircle" />
-          <div>
-            <h1 className="brandTitle">ANSISOCIETY</h1>
-            <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
-          </div>
-        </div>
-        <Link href="/">
-          <button className="btnOutline">Menú</button>
-        </Link>
-      </header>
+      <Header variant="default" />
 
       <section className="gdaContainer">
         <div className="gdaIntro">
@@ -203,8 +243,8 @@ export default function TestGDAPage() {
           {/* Botón calcular — oculto una vez enviado */}
           {!submitted && (
             <div className="gdaActions">
-              <button className="modernPrimaryButton" onClick={handleSubmit}>
-                Calcular resultado
+              <button className="modernPrimaryButton" onClick={handleSubmit} disabled={guardando}>
+                {guardando ? "Guardando..." : "Calcular resultado"}
               </button>
             </div>
           )}

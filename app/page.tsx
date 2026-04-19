@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import Header from "@/components/Header";
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -23,23 +24,7 @@ export default function HomePage() {
   return (
     <main className="homeWrapper">
       {/* ── TOPBAR ── */}
-      <header className="topBar">
-        <div className="brandBox">
-          <div className="logoCircle" />
-          <div>
-            <h1 className="brandTitle">ANSISOCIETY</h1>
-            <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
-          </div>
-        </div>
-        <div className="navButtons">
-          <Link href="/login">
-            <button className="btnOutline">Iniciar Sesión</button>
-          </Link>
-          <Link href="/registro">
-            <button className="btnSolid">Registrarse</button>
-          </Link>
-        </div>
-      </header>
+      <Header variant="home" />
       
 
       <section className="hero" ref={heroRef}>

@@ -1,21 +1,9 @@
-import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function RecursosPage() {
   return (
     <main className="pageWrapper">
-      <header className="topBar">
-        <div className="brandBox">
-          <div className="logoCircle" />
-          <div>
-            <h1 className="brandTitle">ANSISOCIETY</h1>
-            <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
-          </div>
-        </div>
-
-        <Link href="/perfil">
-          <button className="topButton">PERFIL</button>
-        </Link>
-      </header>
+      <Header variant="default" />
 
       <section className="centerSection">
         <h2

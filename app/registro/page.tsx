@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
 
 export default function RegistroPage() {
   const router = useRouter();
@@ -39,8 +40,13 @@ export default function RegistroPage() {
         createdAt: new Date().toISOString(),
       });
 
+      // Actualizar displayName en Firebase Auth
+      await updateProfile(usuarioCreado.user, {
+        displayName: `${nombre} ${apellidos}`,
+      });
+
       alert("Cuenta creada correctamente");
-      router.push("/login");
+      router.push("/dashboard");
     } catch (err: unknown) {
       const errorCode =
         err && typeof err === "object" && "code" in err ? String(err.code) : "";
@@ -67,18 +73,7 @@ export default function RegistroPage() {
       <div className="bgBlob bgBlob3" />
 
       {/* ── TOPBAR ── */}
-      <header className="glassBar">
-        <div className="brandBox">
-          <div className="logoCircle" />
-          <div>
-            <h1 className="brandTitle">ANSISOCIETY</h1>
-            <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
-          </div>
-        </div>
-        <Link href="/login" className="topButtonLink">
-          <button className="btnOutline">Iniciar Sesión</button>
-        </Link>
-      </header>
+      <Header variant="auth" />
 
       {/* ── FORMULARIO ── */}
       <section className="regCenter">
