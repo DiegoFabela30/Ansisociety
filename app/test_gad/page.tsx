@@ -86,23 +86,27 @@ export default function TestGDAPage() {
       return;
     }
 
+    if (!user) {
+      alert("Debes iniciar sesión para guardar el resultado.");
+      return;
+    }
+
     try {
       setGuardando(true);
 
-      if (user) {
-        await addDoc(collection(db, "usuarios", user.uid, "tests"), {
-          tipo: "GAD-7",
-          puntuacion: totalScore,
-          interpretacion: interpretation,
-          recomendacion: recommendation,
-          respuestas: answers,
-          dificultad: difficulty,
-          fechaInicio: symptomStart,
-          createdAt: serverTimestamp(),
-        });
-      }
+      await addDoc(collection(db, "usuarios", user.uid, "tests"), {
+        tipo: "GAD-7",
+        puntuacion: totalScore,
+        interpretacion: interpretation,
+        recomendacion: recommendation,
+        respuestas: answers,
+        dificultad: difficulty,
+        fechaInicio: symptomStart,
+        createdAt: serverTimestamp(),
+      });
 
       setSubmitted(true);
+      alert("Resultado guardado correctamente.");
       setTimeout(() => {
         document.getElementById("resultado")?.scrollIntoView({ behavior: "smooth" });
       }, 100);
@@ -238,12 +242,12 @@ export default function TestGDAPage() {
               </div>
             </div>
           </div>
-          /*}
+          */}
 
           {/* Botón calcular — oculto una vez enviado */}
           {!submitted && (
             <div className="gdaActions">
-              <button className="modernPrimaryButton" onClick={handleSubmit} disabled={guardando}>
+              <button type="button" className="modernPrimaryButton" onClick={handleSubmit} disabled={guardando}>
                 {guardando ? "Guardando..." : "Calcular resultado"}
               </button>
             </div>

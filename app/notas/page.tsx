@@ -315,7 +315,7 @@ export default function NotasPage() {
 
         {/* SIDEBAR */}
         <aside className="notasSidebar">
-          <p className="notasSideHead">Notas guardadas</p>
+          <p className="notasSideHead"> Emociones Registradas</p>
 
           {notas.length === 0 ? (
             <p style={{ fontSize: "0.82rem", color: "#7ab0ba", fontWeight: 300, padding: "4px 6px", lineHeight: 1.6 }}>
@@ -345,7 +345,7 @@ export default function NotasPage() {
           )}
 
           <button className="nuevaNotaBtn" onClick={nuevaNota}>
-            + Nueva entrada
+            + Nuevo Registro
           </button>
 
           {/* Nota de privacidad */}
