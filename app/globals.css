@@ -3584,3 +3584,1313 @@ body {
   flex-shrink: 0;
   white-space: nowrap;
 }
+
+
+/* ── HERO STEPS ── */
+.heroSteps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.heroStep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  padding: 8px 16px;
+  backdrop-filter: blur(8px);
+}
+
+.heroStepNum {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0d5c6e;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.heroStepText {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #0d2e36;
+  letter-spacing: 0.3px;
+}
+
+.heroStepDivider {
+  color: #2a8fa0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.heroTrustNote {
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: #1a5060;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+/* ── GAD BANNER ── */
+.gadBanner {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.gadBannerInner {
+  width: min(1100px, 100%);
+  background: rgba(13, 92, 110, 0.08);
+  border: 1.5px solid rgba(13, 92, 110, 0.18);
+  border-radius: 20px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.gadBannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.gadBannerIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.gadBannerTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0d2e36;
+  margin-bottom: 4px;
+}
+
+.gadBannerDesc {
+  font-size: 0.88rem;
+  color: #2a6070;
+  line-height: 1.5;
+}
+
+.gadBannerBtn {
+  background: #0d5c6e;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 13px 24px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(13, 92, 110, 0.25);
+  flex-shrink: 0;
+}
+
+.gadBannerBtn:hover {
+  background: #0a4a59;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(13, 92, 110, 0.32);
+}
+
+/* ── HOW SECTION ── */
+.howSection {
+  padding: 80px 32px;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.howGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  counter-reset: howCounter;
+}
+
+.howCard {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 32px 28px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fadeUp 0.8s ease both;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.howCard:nth-child(1) { animation-delay: 0.1s; }
+.howCard:nth-child(2) { animation-delay: 0.2s; }
+.howCard:nth-child(3) { animation-delay: 0.3s; }
+
+.howCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(13, 92, 110, 0.14);
+}
+
+.howStepBadge {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: rgba(13, 92, 110, 0.15);
+  line-height: 1;
+}
+
+.howIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.howTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d2e36;
+}
+
+.howDesc {
+  font-size: 0.92rem;
+  color: #2a6070;
+  line-height: 1.7;
+  font-weight: 300;
+  flex: 1;
+}
+
+.howCta {
+  background: transparent;
+  border: 1.5px solid rgba(13, 92, 110, 0.3);
+  color: #0d5c6e;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.howCta:hover {
+  background: #0d5c6e;
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* ── CTA FINAL ── */
+.ctaFinal {
+  width: 100%;
+  padding: 80px 32px;
+  background: rgba(13, 92, 110, 0.06);
+  border-top: 1px solid rgba(13, 92, 110, 0.1);
+}
+
+.ctaFinalInner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ctaFinalTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0d2e36;
+  margin-bottom: 16px;
+}
+
+.ctaFinalDesc {
+  font-size: 1rem;
+  color: #2a6070;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.ctaFinalActions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .heroSteps {
+    gap: 6px;
+  }
+
+  .heroStepDivider {
+    display: none;
+  }
+
+  .gadBannerInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gadBannerBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .howCta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .ctaFinalTitle {
+    font-size: 1.7rem;
+  }
+}
+
+
+
+/* ══════════════════════════════════════
+   DASHBOARD PAGE
+══════════════════════════════════════ */
+
+.dashWelcomeBanner {
+  width: 100%;
+  padding: 40px 32px 0;
+  max-width: 1140px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.dashWelcomeBanner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dashWelcomeInner {
+  background: linear-gradient(135deg, rgba(94,232,208,0.25) 0%, rgba(78,166,255,0.15) 100%);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 24px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(13,92,110,0.08);
+}
+
+.dashWelcomeLabel {
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2a8fa0;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.dashWelcomeTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #0d2e36;
+  margin-bottom: 6px;
+  line-height: 1.15;
+}
+
+.dashWelcomeSub {
+  color: #1a5060;
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.dashStatBox {
+  background: rgba(255,255,255,0.6);
+  border-radius: 16px;
+  padding: 16px 24px;
+  text-align: center;
+  min-width: 130px;
+  border: 1px solid rgba(255,255,255,0.8);
+}
+
+.dashStatNum {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0d5c6e;
+  line-height: 1;
+}
+
+.dashStatLbl {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2a8fa0;
+  margin-top: 4px;
+}
+
+/* ── GUÍA RÁPIDA ── */
+.dashGuide {
+  width: 100%;
+  padding: 20px 32px 0;
+  max-width: 1140px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.55s ease 0.12s;
+}
+
+.dashGuide.visible {
+  opacity: 1;
+}
+
+.dashGuideInner {
+  background: rgba(13,92,110,0.06);
+  border: 1px solid rgba(13,92,110,0.12);
+  border-radius: 14px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashGuideText {
+  font-size: 0.85rem;
+  color: #1a5060;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.dashGuideLink {
+  color: #0d5c6e;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── SECCIÓN HERRAMIENTAS ── */
+.dashToolsSection {
+  padding: 28px 32px 80px;
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── TARJETA EXTENDIDA ── */
+.dashCardMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.dashCardTag {
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.dashCardTime {
+  font-size: 0.72rem;
+  color: #2a8fa0;
+  font-weight: 400;
+}
+
+.dashCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.dashCardHint {
+  background: rgba(13,92,110,0.05);
+  border: 1px solid rgba(13,92,110,0.1);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.dashCardHintText {
+  font-size: 0.8rem;
+  color: #1a5060;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.dashCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.dashCardCta {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0d5c6e;
+  letter-spacing: 0.3px;
+}
+
+.dashCardArrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #0d5c6e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.card:hover .dashCardArrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 640px) {
+  .dashWelcomeInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashStatBox {
+    width: 100%;
+  }
+
+  .dashWelcomeBanner,
+  .dashGuide,
+  .dashToolsSection {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+
+
+/* ══════════════════════════════════════
+   FORO PAGE — mejoras UX
+══════════════════════════════════════ */
+
+/* ── Hint de reglas del foro en el sidebar ── */
+.foroRulesHint {
+  background: rgba(13, 92, 110, 0.05);
+  border: 1px solid rgba(13, 92, 110, 0.12);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.foroRulesTitle {
+  font-size: 0.68rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #2a8fa0;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.foroRuleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 0.8rem;
+  color: #1f5563;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.foroRuleItem:last-child {
+  margin-bottom: 0;
+}
+
+.foroRuleDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5ee8d0;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* ── Badge de estado vacío ── */
+.foroEmptyState {
+  text-align: center;
+  padding: 48px 24px;
+  color: #6a8f9d;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.foroEmptyIcon {
+  font-size: 2.4rem;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.foroEmptyTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0d3040;
+  margin-bottom: 8px;
+}
+
+/* ── Indicador de campo requerido ── */
+.foroFieldHint {
+  font-size: 0.75rem;
+  color: #7aaab5;
+  margin-top: -8px;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+
+/* ── Etiqueta "Tu publicación" en edición ── */
+.foroEditingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(78, 166, 255, 0.12);
+  border: 1px solid rgba(78, 166, 255, 0.28);
+  color: #2a6070;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* ── Botón cancelar edición ── */
+.foroCancelBtn {
+  background: transparent;
+  border: 1.5px solid rgba(13, 92, 110, 0.2);
+  color: #2a6070;
+  border-radius: 12px;
+  padding: 10px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.foroCancelBtn:hover {
+  border-color: #0d5c6e;
+  color: #0d5c6e;
+  background: rgba(13, 92, 110, 0.04);
+}
+
+/* ── Acciones del composer agrupadas ── */
+.foroComposerActions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ── Tooltips de acción en posts ── */
+.foroActionGroup {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.foroActionDivider {
+  width: 1px;
+  height: 18px;
+  background: rgba(13, 92, 110, 0.15);
+  flex-shrink: 0;
+}
+
+/* ── Label del composer ── */
+.foroComposerLabel {
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #2a8fa0;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.foroComposerTitle {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d2e36;
+}
+
+/* ── Barra de progreso del textarea ── */
+.foroCharBar {
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(13, 92, 110, 0.1);
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.foroCharBarFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5ee8d0, #4ea6ff);
+  transition: width 0.25s ease;
+}
+
+/* Cambia a rojo cuando casi lleno */
+.foroCharBarFill.danger {
+  background: linear-gradient(90deg, #ff9a9a, #ff4d4d);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .foroComposerActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .foroComposerActions .foroPublishBtn,
+  .foroComposerActions .foroCancelBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .foroActionGroup {
+    gap: 6px;
+  }
+}
+
+
+/* ══════════════════════════════════════
+   NOTAS PAGE — mejoras UX
+══════════════════════════════════════ */
+
+/* ── Header de la página con info contextual ── */
+.notasPageMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.notasPageMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #7ab0ba;
+  letter-spacing: 0.3px;
+}
+
+.notasPageMetaDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(13, 92, 110, 0.25);
+}
+
+/* ── Sidebar: hint de privacidad ── */
+.notasPrivacyNote {
+  background: rgba(94, 232, 208, 0.1);
+  border: 1px solid rgba(94, 232, 208, 0.3);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.notasPrivacyIcon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.notasPrivacyText {
+  font-size: 0.78rem;
+  color: #1f5563;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+/* ── Nota en sidebar: fecha de actualización ── */
+.notaBtnMeta {
+  font-size: 0.68rem;
+  color: #7ab0ba;
+  letter-spacing: 0.3px;
+  display: block;
+  margin-top: 2px;
+  text-align: left;
+}
+
+.notaBtnContent {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.notaBtnTitle {
+  font-size: 0.88rem;
+  color: #0d3040;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.notaBtn.active .notaBtnTitle {
+  font-weight: 500;
+  color: #0d2e36;
+}
+
+/* ── Empty state del editor ── */
+.notasEmptyEditor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.notasEmptyIcon {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.notasEmptyTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0d3040;
+}
+
+.notasEmptyDesc {
+  font-size: 0.88rem;
+  color: #7ab0ba;
+  line-height: 1.6;
+  max-width: 280px;
+  font-weight: 300;
+}
+
+/* ── Hint del textarea ── */
+.notasEditorHint {
+  padding: 6px 24px 0;
+  font-size: 0.75rem;
+  color: #9abec8;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+/* ── Mood seleccionado: badge visible ── */
+.moodSelectedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(94, 232, 208, 0.2);
+  border: 1px solid rgba(94, 232, 208, 0.45);
+  color: #0d5c6e;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Botón borrar: estilo outline destructivo ── */
+.btnBorrar {
+  background: transparent;
+  border: 1.5px solid rgba(176, 0, 32, 0.2);
+  color: #a03040;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.22s ease;
+}
+
+.btnBorrar:hover {
+  border-color: rgba(176, 0, 32, 0.45);
+  background: rgba(176, 0, 32, 0.05);
+  color: #800020;
+}
+
+.btnBorrar:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Separador en acciones del editor ── */
+.editorAccionesDivider {
+  width: 1px;
+  height: 18px;
+  background: rgba(13, 92, 110, 0.12);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .notasPageMeta {
+    gap: 10px;
+  }
+
+  .notasPageMetaDot {
+    display: none;
+  }
+
+  .editorAcciones {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+
+
+/* ══════════════════════════════════════
+   RECURSOS PAGE — mejoras UX
+══════════════════════════════════════ */
+
+/* ── Hero de la página ── */
+.recursosHero {
+  text-align: center;
+  padding: 42px 24px 20px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.7s ease 0.1s both;
+}
+
+.recursosTitle {
+  font-family: 'Playfair Display', 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  color: #0d2e36;
+  line-height: 1.1;
+  margin: 14px 0 12px;
+  letter-spacing: 1px;
+}
+
+.recursosSubtitle {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1rem;
+  color: #2a6070;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ── Filtros de categoría ── */
+.recursosFiltros {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 0 24px 28px;
+  position: relative;
+  z-index: 2;
+  animation: fadeUp 0.7s ease 0.2s both;
+}
+
+.recursosFiltroBtn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  color: #2a6070;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(8px);
+  transition: all 0.24s ease;
+}
+
+.recursosFiltroBtn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+.recursosFiltroBtn.active {
+  background: #0d5c6e;
+  border-color: #0d5c6e;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(13, 92, 110, 0.28);
+}
+
+/* ── Sección de recursos ── */
+.recursosSection {
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 28px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Etiqueta de sección ── */
+.recursosSectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(13, 92, 110, 0.08);
+}
+
+.recursosSectionTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0d2e36;
+}
+
+.recursosSectionCount {
+  font-size: 0.75rem;
+  color: #7ab0ba;
+  letter-spacing: 1px;
+}
+
+/* ── Audio card mejorada ── */
+.audioCard {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(13, 92, 110, 0.08);
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 14px;
+}
+
+.audioCard:last-child {
+  margin-bottom: 0;
+}
+
+.audioCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(13, 92, 110, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.audioCardPlay {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #5ee8d0, #4ea6ff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 22px rgba(78, 166, 255, 0.22);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  padding-left: 3px; /* centra el triángulo visualmente */
+}
+
+.audioCard:hover .audioCardPlay {
+  transform: scale(1.08);
+  box-shadow: 0 12px 28px rgba(78, 166, 255, 0.3);
+}
+
+.audioCardInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.audioCardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  color: #0d3040;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.audioCardDesc {
+  font-size: 0.82rem;
+  color: #5d8792;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.audioCardMeta {
+  font-size: 0.72rem;
+  color: #9abec8;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+/* ── Video card ── */
+.videoCard {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d5c6e, #4ea6ff);
+  height: 190px;
+  cursor: pointer;
+  margin-bottom: 14px;
+  box-shadow: 0 10px 28px rgba(13, 92, 110, 0.16);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.videoCard:last-child {
+  margin-bottom: 0;
+}
+
+.videoCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(13, 92, 110, 0.22);
+}
+
+.videoCardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 20, 28, 0.22);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.25s ease;
+}
+
+.videoCard:hover .videoCardOverlay {
+  background: rgba(8, 20, 28, 0.32);
+}
+
+.videoCardBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #0d5c6e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.22s ease;
+  padding-left: 3px;
+}
+
+.videoCard:hover .videoCardBtn {
+  transform: scale(1.1);
+}
+
+.videoCardLabel {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.videoCardTag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.videoCardDuration {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+}
+
+/* ── Meditación: player visual ── */
+.meditacionPlayer {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(13, 92, 110, 0.08);
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 14px;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+  cursor: pointer;
+}
+
+.meditacionPlayer:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(13, 92, 110, 0.1);
+}
+
+.meditacionPlayerTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.meditacionPlayerIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(94, 232, 208, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.meditacionPlayerInfo {
+  flex: 1;
+}
+
+.meditacionPlayerTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.98rem;
+  color: #0d3040;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.meditacionPlayerDesc {
+  font-size: 0.8rem;
+  color: #5d8792;
+  font-weight: 300;
+}
+
+.meditacionPlayerDuration {
+  font-size: 0.72rem;
+  color: #9abec8;
+  letter-spacing: 1px;
+}
+
+/* Barra de progreso decorativa */
+.meditacionProgressBar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(13, 92, 110, 0.08);
+  overflow: hidden;
+}
+
+.meditacionProgressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #5ee8d0, #4ea6ff);
+}
+
+/* ── CTA inferior ── */
+.recursosCta {
+  text-align: center;
+  padding: 0 24px 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.recursosCtaInner {
+  background: rgba(13, 92, 110, 0.06);
+  border: 1px solid rgba(13, 92, 110, 0.1);
+  border-radius: 24px;
+  padding: 36px 32px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.recursosCtaTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0d2e36;
+  margin-bottom: 10px;
+}
+
+.recursosCtaDesc {
+  font-size: 0.9rem;
+  color: #2a6070;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 22px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .cardsGrid2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .recursosSection {
+    padding: 0 16px 40px;
+  }
+
+  .recursosFiltros {
+    padding: 0 16px 20px;
+  }
+
+  .recursosHero {
+    padding: 32px 18px 16px;
+  }
+
+  .videoCard {
+    height: 160px;
+  }
+}
