@@ -40,12 +40,19 @@ export default function TestGDAPage() {
   const [symptomStart, setSymptomStart] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [guardando, setGuardando] = useState(false);
+  const [saved, setSaved] = useState(false);
 
+  // Remover el useEffect que redirige a login
+
+  // Nuevo useEffect para guardar automáticamente si se loguea después de completar el test
   useEffect(() => {
-    if (!loading && !user) {
-      router.push("/login");
-    }
-  }, [user, loading, router]);
+    const saveIfNeeded = async () => {
+      if (user && submitted && !saved) {
+        await handleSaveResult(false);
+      }
+    };
+    saveIfNeeded();
+  }, [user, submitted, saved]);
 
   const totalScore = useMemo(() => {
     return answers.reduce((acc, val) => (val >= 0 ? acc + val : acc), 0);
@@ -80,17 +87,8 @@ export default function TestGDAPage() {
     setAnswers(updated);
   };
 
-  const handleSubmit = async () => {
-    if (!completed) {
-      alert("Por favor responde todas las preguntas del test.");
-      return;
-    }
-
-    if (!user) {
-      alert("Debes iniciar sesión para guardar el resultado.");
-      return;
-    }
-
+  const handleSaveResult = async (showAlert: boolean = true) => {
+    if (!user) return; // Solo guardar si hay usuario
     try {
       setGuardando(true);
 
@@ -105,16 +103,30 @@ export default function TestGDAPage() {
         createdAt: serverTimestamp(),
       });
 
-      setSubmitted(true);
-      alert("Resultado guardado correctamente.");
-      setTimeout(() => {
-        document.getElementById("resultado")?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+      setSaved(true);
+      if (showAlert) {
+        alert("Resultado guardado correctamente.");
+      }
     } catch (error) {
       console.error("Error al guardar el resultado:", error);
-      alert("Hubo un error al guardar el resultado. Intenta de nuevo.");
+      if (showAlert) {
+        alert("Hubo un error al guardar el resultado. Intenta de nuevo.");
+      }
     } finally {
       setGuardando(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!completed) {
+      alert("Por favor responde todas las preguntas del test.");
+      return;
+    }
+
+    setSubmitted(true);
+
+    if (user) {
+      await handleSaveResult(true);
     }
   };
 
@@ -124,6 +136,7 @@ export default function TestGDAPage() {
     setDifficulty(-1);
     setSymptomStart("");
     setSubmitted(false);
+    setSaved(false); // Resetear saved para permitir guardar en el próximo test
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -282,6 +295,24 @@ export default function TestGDAPage() {
                 <strong>15–21:</strong> Ansiedad severa
               </div>
             </div>
+
+            {!user && !saved && (
+              <p className="gdaHelperText">
+                <Link href="/login">Inicia sesión</Link> o <Link href="/registro">regístrate</Link> para guardar tu resultado.
+              </p>
+            )}
+
+            {user && !saved && (
+              <div className="gdaActionBox">
+                <button
+                  className="modernPrimaryButton"
+                  onClick={() => handleSaveResult(true)}
+                  disabled={guardando}
+                >
+                  {guardando ? "Guardando..." : "Guardar resultado"}
+                </button>
+              </div>
+            )}
 
             {difficulty >= 0 && (
               <p className="gdaHelperText">
