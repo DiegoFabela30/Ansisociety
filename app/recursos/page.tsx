@@ -10,30 +10,30 @@ const audios = [
     titulo: "Lluvia suave para dormir",
     desc: "Sonidos de naturaleza para relajar el sistema nervioso",
     duracion: "45 min",
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/audios%2FLluvia%20suave%20para%20dormir.mp3?alt=media",
   },
   {
     titulo: "Bosque al amanecer",
     desc: "Pájaros y brisa matutina para iniciar el día con calma",
     duracion: "30 min",
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/audios%2FBosque%20al%20amanecer.mp3?alt=media",
   },
   {
     titulo: "Olas del mar",
     desc: "Ritmo constante del océano para reducir la ansiedad",
     duracion: "60 min",
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/audios%2FOlas%20del%20mar.mp3?alt=media",
   },
 ];
 
 const videos = [
   {
-    titulo: "Respiración 4-7-8",
-    desc: "Técnica clínica para calmar la ansiedad en minutos",
-    duracion: "8 min",
-    tag: "Técnica",
+    titulo: "Funcionamiento Ansisociety",
+    desc: "Conoce todas las funcionalidades de la plataforma",
+    duracion: "5 min",
+    tag: "Introducción",
     gradiente: "linear-gradient(135deg, #0d5c6e 0%, #4ea6ff 100%)",
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/videos%2FFuncionamiento%20Ansisociety.mp4?alt=media",
   },
   {
     titulo: "Relajación muscular progresiva",
@@ -41,7 +41,7 @@ const videos = [
     duracion: "15 min",
     tag: "Ejercicio",
     gradiente: "linear-gradient(135deg, #2a8fa0 0%, #7ee8a0 100%)",
-    url: "#",
+    url: "/multimedia/videos/relajacion-muscular.mp4",
   },
   {
     titulo: "Naturaleza en 4K — Paisajes calmantes",
@@ -49,7 +49,7 @@ const videos = [
     duracion: "20 min",
     tag: "Relajación",
     gradiente: "linear-gradient(135deg, #1a5060 0%, #5ee8d0 100%)",
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/videos%2FNaturaleza%20en%204K%20%E2%80%94%20Paisajes%20calmantes.mp4?alt=media",
   },
 ];
 
@@ -60,7 +60,7 @@ const meditaciones = [
     desc: "Introducción al mindfulness para reducir pensamientos intrusivos",
     duracion: "10 min",
     progreso: 0,
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/meditaciones%2FAtencion%20plena.mp3?alt=media",
   },
   {
     icono: "🌬️",
@@ -68,7 +68,7 @@ const meditaciones = [
     desc: "Ancla tu atención en la respiración para salir del modo ansiedad",
     duracion: "7 min",
     progreso: 0,
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/meditaciones%2FRespiraci%C3%B3n%20consciente.mp3?alt=media",
   },
   {
     icono: "🌙",
@@ -76,7 +76,7 @@ const meditaciones = [
     desc: "Relaja cuerpo y mente antes de acostarte con esta guía nocturna",
     duracion: "20 min",
     progreso: 0,
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/meditaciones%2FMeditacion%20para%20dormir.mp3?alt=media",
   },
   {
     icono: "💙",
@@ -84,7 +84,7 @@ const meditaciones = [
     desc: "Cultiva una relación más amable contigo mismo en momentos difíciles",
     duracion: "12 min",
     progreso: 0,
-    url: "#",
+    url: "https://firebasestorage.googleapis.com/v0/b/ansisociety.firebasestorage.app/o/meditaciones%2FAutocompasi%C3%B3n%20guiada.mp3?alt=media",
   },
 ];
 
@@ -145,17 +145,19 @@ export default function RecursosPage() {
                 Sonidos de naturaleza y ambientes calmantes para reducir el estrés y la ansiedad.
               </p>
               {audios.map((audio) => (
-                <div
-                  key={audio.titulo}
-                  className="audioCard"
-                  onClick={() => window.open(audio.url, "_blank")}
-                >
-                  <div className="audioCardPlay">▶</div>
-                  <div className="audioCardInfo">
-                    <p className="audioCardTitle">{audio.titulo}</p>
-                    <p className="audioCardDesc">{audio.desc}</p>
+                <div key={audio.titulo} className="audioItem">
+                  <div>
+                    <strong>{audio.titulo}</strong>
+                    <p>{audio.desc}</p>
                   </div>
-                  <span className="audioCardMeta">{audio.duracion}</span>
+                  <audio 
+                    controls 
+                    style={{ width: "100%", marginTop: "8px", height: "32px" }}
+                    preload="metadata"
+                  >
+                    <source src={audio.url} type="audio/mpeg" />
+                    Tu navegador no soporta audio HTML5.
+                  </audio>
                 </div>
               ))}
             </div>
@@ -172,31 +174,32 @@ export default function RecursosPage() {
                 Prácticas de mindfulness y relajación guiadas por especialistas en salud mental.
               </p>
               {meditaciones.map((med) => (
-                <div
-                  key={med.titulo}
-                  className="meditacionPlayer"
-                  onClick={() => window.open(med.url, "_blank")}
-                >
-                  <div className="meditacionPlayerTop">
-                    <div className="meditacionPlayerIcon">{med.icono}</div>
-                    <div className="meditacionPlayerInfo">
-                      <p className="meditacionPlayerTitle">{med.titulo}</p>
-                      <p className="meditacionPlayerDesc">{med.desc}</p>
+                <div key={med.titulo} className="meditacionPlayer">
+                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "10px" }}>
+                    <div style={{ fontSize: "1.8rem" }}>{med.icono}</div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontWeight: 600, margin: "0 0 2px 0", fontSize: "0.95rem", color: "#0d3040" }}>
+                        {med.titulo}
+                      </p>
+                      <p style={{ margin: 0, fontSize: "0.82rem", color: "#5d8792" }}>
+                        {med.desc}
+                      </p>
                     </div>
-                    <span className="meditacionPlayerDuration">{med.duracion}</span>
                   </div>
-                  <div className="meditacionProgressBar">
-                    <div
-                      className="meditacionProgressFill"
-                      style={{ width: `${med.progreso}%` }}
-                    />
-                  </div>
+                  <audio 
+                    controls 
+                    style={{ width: "100%", height: "32px" }}
+                    preload="metadata"
+                  >
+                    <source src={med.url} type="audio/mpeg" />
+                    Tu navegador no soporta audio HTML5.
+                  </audio>
                 </div>
               ))}
             </div>
           )}
 
-          {/* ── EJERCICIOS DE RESPIRACIÓN ── */}
+          {/* ── EJERCICIOS DE RESPIRACIÓN ── 
           {mostrarVideo && (
             <div className="resourceCard">
               <div className="recursosSectionHead">
@@ -207,22 +210,33 @@ export default function RecursosPage() {
                 Técnicas visuales de respiración y relajación con guía paso a paso.
               </p>
               {videos.slice(0, 2).map((video) => (
-                <div
-                  key={video.titulo}
-                  className="videoCard"
-                  style={{ background: video.gradiente }}
-                  onClick={() => window.open(video.url, "_blank")}
-                >
-                  <span className="videoCardTag">{video.tag}</span>
-                  <div className="videoCardOverlay">
-                    <div className="videoCardBtn">▶</div>
-                    <span className="videoCardLabel">{video.titulo}</span>
+                <div key={video.titulo}>
+                  <div style={{ marginBottom: "12px" }}>
+                    <span style={{ display: "inline-block", background: "rgba(94, 232, 208, 0.25)", color: "#0d5c6e", fontSize: "0.75rem", padding: "4px 10px", borderRadius: "999px", marginBottom: "8px", fontWeight: 500 }}>
+                      {video.tag}
+                    </span>
+                    <p style={{ margin: "6px 0", fontWeight: 600, fontSize: "0.95rem", color: "#0d3040" }}>
+                      {video.titulo}
+                    </p>
+                    <p style={{ margin: "2px 0 8px 0", fontSize: "0.82rem", color: "#5d8792" }}>
+                      {video.desc}
+                    </p>
                   </div>
-                  <span className="videoCardDuration">{video.duracion}</span>
+                  <video 
+                    width="100%" 
+                    height="180" 
+                    controls 
+                    style={{ borderRadius: "12px" }}
+                    preload="metadata"
+                  >
+                    <source src={video.url} type="video/mp4" />
+                    Tu navegador no soporta video HTML5.
+                  </video>
                 </div>
               ))}
             </div>
           )}
+            */}
 
           {/* ── VIDEOS RELAJANTES ── */}
           {mostrarVideo && (
@@ -235,34 +249,44 @@ export default function RecursosPage() {
                 Paisajes naturales y escenas tranquilas para un descanso visual profundo.
               </p>
               {videos.slice(2).map((video) => (
-                <div
-                  key={video.titulo}
-                  className="videoCard"
-                  style={{ background: video.gradiente, height: "220px" }}
-                  onClick={() => window.open(video.url, "_blank")}
-                >
-                  <span className="videoCardTag">{video.tag}</span>
-                  <div className="videoCardOverlay">
-                    <div className="videoCardBtn">▶</div>
-                    <span className="videoCardLabel">{video.titulo}</span>
+                <div key={video.titulo}>
+                  <div style={{ marginBottom: "12px" }}>
+                    <span style={{ display: "inline-block", background: "rgba(94, 232, 208, 0.25)", color: "#0d5c6e", fontSize: "0.75rem", padding: "4px 10px", borderRadius: "999px", marginBottom: "8px", fontWeight: 500 }}>
+                      {video.tag}
+                    </span>
+                    <p style={{ margin: "6px 0", fontWeight: 600, fontSize: "0.95rem", color: "#0d3040" }}>
+                      {video.titulo}
+                    </p>
+                    <p style={{ margin: "2px 0 8px 0", fontSize: "0.82rem", color: "#5d8792" }}>
+                      {video.desc}
+                    </p>
                   </div>
-                  <span className="videoCardDuration">{video.duracion}</span>
+                  <video 
+                    width="100%" 
+                    height="240" 
+                    controls 
+                    style={{ borderRadius: "12px", background: "#000" }}
+                    preload="metadata"
+                  >
+                    <source src={video.url} type="video/mp4" />
+                    Tu navegador no soporta video HTML5.
+                  </video>
+
+                  {/* Hint de bienestar */}
+                  <div style={{
+                    marginTop: "18px",
+                    background: "rgba(94, 232, 208, 0.12)",
+                    border: "1px solid rgba(94, 232, 208, 0.3)",
+                    borderRadius: "14px",
+                    padding: "14px 16px",
+                  }}>
+                    <p style={{ fontSize: "0.78rem", color: "#1f5563", lineHeight: 1.6, fontWeight: 300 }}>
+                      💡 <strong>Tip:</strong> Ver naturaleza en video durante 10 minutos puede reducir
+                      el cortisol (hormona del estrés) de forma significativa.
+                    </p>
+                  </div>
                 </div>
               ))}
-
-              {/* Hint de bienestar */}
-              <div style={{
-                marginTop: "18px",
-                background: "rgba(94, 232, 208, 0.12)",
-                border: "1px solid rgba(94, 232, 208, 0.3)",
-                borderRadius: "14px",
-                padding: "14px 16px",
-              }}>
-                <p style={{ fontSize: "0.78rem", color: "#1f5563", lineHeight: 1.6, fontWeight: 300 }}>
-                  💡 <strong>Tip:</strong> Ver naturaleza en video durante 10 minutos puede reducir
-                  el cortisol (hormona del estrés) de forma significativa.
-                </p>
-              </div>
             </div>
           )}
         </div>
