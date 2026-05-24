@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useAuth } from "@/contexts/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -28,7 +29,14 @@ export default function Header({ variant = "default" }: HeaderProps) {
 
   const brandContent = (
     <div className="brandBox">
-      <div className="logoCircle" />
+      <Image
+        src="/images/logo_ansisociety.png"
+        alt="ANSISOCIETY Logo"
+        width={52}
+        height={52}
+        className="logoImage"
+        priority
+      />
       <div>
         <h1 className="brandTitle">ANSISOCIETY</h1>
         <p className="brandSubtitle">APOYO EMOCIONAL DIGITAL</p>
