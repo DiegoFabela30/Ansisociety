@@ -128,7 +128,7 @@ export default function HomePage() {
             {
               step: "01",
               icon: "📋",
-              title: "Evalúa tu ansiedad",
+              title: "Evalúa tu ansiedad (Test GAD-7)",
               desc: "Responde el test GAD-7 validado clínicamente. En 2 minutos sabrás tu nivel actual de ansiedad.",
               cta: "Hacer el test",
               href: "/test_gad",
@@ -136,7 +136,7 @@ export default function HomePage() {
             {
               step: "02",
               icon: "✍️",
-              title: "Registra tus emociones",
+              title: "Registra tus emociones (Diario Emocional)",
               desc: "Usa el diario emocional para escribir cómo te sientes. Identificar patrones es el primer paso para mejorar.",
               cta: "Ir al diario",
               href: "/notas",
@@ -144,7 +144,7 @@ export default function HomePage() {
             {
               step: "03",
               icon: "🤝",
-              title: "Conéctate con la comunidad",
+              title: "Conéctate con la comunidad (foro interactivo)",
               desc: "Comparte en el foro con personas que entienden lo que vives. No tienes que enfrentarlo solo.",
               cta: "Ver el foro",
               href: "/foro",
@@ -167,7 +167,7 @@ export default function HomePage() {
       <section className="cardsSection">
         <p className="sectionLabel">¿Qué encontrarás aquí?</p>
         <h2 className="sectionTitle">
-          Todo lo que necesitas<br />en un solo lugar
+          Nuestras herramientas<br />de apoyo emocional
         </h2>
         <div className="cardsGrid">
           {[
