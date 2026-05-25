@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { db } from "@/lib/firebase";
 import { doc, getDoc, collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
 import Header from "@/components/Header";
-import Link from "next/link";
 
 interface UserData {
   nombre: string;
@@ -38,6 +37,11 @@ export default function PerfilPage() {
   const [latestTest, setLatestTest] = useState<TestResult | null>(null);
   const [userPosts, setUserPosts] = useState<ForoPost[]>([]);
   const [loadingData, setLoadingData] = useState(true);
+
+  const handleVolverAlMenu = () => {
+    console.log("Botón clickeado");
+    router.push("/");
+  };
 
   useEffect(() => {
     if (!loading && !user) {
@@ -173,9 +177,14 @@ export default function PerfilPage() {
           </div>
 
           <div className="perfilActions">
-            <Link href="/">
-              <button className="btnOutline">Volver al menú principal</button>
-            </Link>
+            <button 
+              type="button"
+              className="btnOutline" 
+              onClick={handleVolverAlMenu}
+              style={{ zIndex: 10, position: "relative" }}
+            >
+              Volver al menú principal
+            </button>
           </div>
         </div>
       </section>

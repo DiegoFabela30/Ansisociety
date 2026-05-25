@@ -3177,6 +3177,7 @@ body {
 .perfilActions {
   display: flex;
   gap: 12px;
+  width: 100%;
 }
 
 .perfilActions a {
@@ -3184,7 +3185,7 @@ body {
 }
 
 .perfilActions button {
-  width: 100%;
+  flex: 1;
   padding: 12px 24px;
   border-radius: 10px;
   border: 1.5px solid #0d5c6e;
@@ -3193,6 +3194,7 @@ body {
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;
+  pointer-events: auto;
 }
 
 /* ===== ADMIN PAGE ===== */
